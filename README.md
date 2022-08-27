@@ -19,10 +19,8 @@
 
 |  |  |
 | --- | --------- |
-|3  | [What does **this** keyword refers to? Object or Method?](#What-does-**this**-keyword-refers-to?-Object-or-Method?) 
-|
-|4  | [What is the use of **use strict**?](#What-is-the-use-of-**use-strict**?) 
-|
+|3  | [What does **this** keyword refers to? Object or Method?](#What-does-**this**-keyword-refers-to?-Object-or-Method?) |
+|4  | [What is the use of **use strict**?](#What-is-the-use-of-**use-strict**?) |
 
 ## Answers
 
