@@ -6,8 +6,7 @@
 | --- | --------- |
 |   | **Javascript Fundamentals** |
 |1  | [Given var a = "String" and var b = new String("String"). What is a==b and a===b? Explain](#Given-var-a=-"String"-and-var-b-=-new-String("String").-What-is-a==b-and-a===b?-Explain) |
-|2  | [What will be the output of following code and why?](#What-will-be-the-output-of-following-code-and-why?) 
-|
+|2  | [What will be the output of following code and why?](#What-will-be-the-output-of-following-code-and-why?) |
     console.log(muliply(2,3))
     console.log(add(2,3))
 
