@@ -66,6 +66,7 @@
 | --- | ---------- |
 |8 |[Does arrow function has *arguments* keyword?](#Does-arrow-function-has-arguments-keyword)|
 |9 |[What is the difference between shallow copy and deep copy for javascript objects?](#What-is-the-difference-between-shallow-copy-and-deep-copy-for-javascript-objects?)|
+|10 |[What is short circuit?](#What-is-short-circuit?)|
 
 ## &nbsp;
 ## &nbsp;
@@ -275,7 +276,45 @@
         2. {name:"red", size:4, members:["Rajendra", "Rajesh", "Aparna", "Deepak"]}
 
     As you can see, we got our expected result here. What is happening here is, we are converting object to a string, which is a primitive data type, it allocates a new call stack memory and store the string value there, later wiht the *JSON.parse()* method we are creating an object and storing in heap memory, and the reference is getting pointed to the call stack variable value with a new memory allocaton.
-     
+
 
 
    **[⬆ Back to Top](#table-of-contents)**
+
+10. ### [What is short circuit?](#What-is-short-circuit?)  
+
+    Javascript short circuite is nothing but the same conditional operators to be used to return any data type instead of boolean data. To understand this in more details lets first know how the **&&** and **||** operators works in programming.
+
+    | A | B  | A and B | A or B |
+    | --- | ------- | ------- | ------- |
+    | T | T | True | True|
+    | T | F | False | True|
+    | F | F | False | False|
+    | F | T | False | True|
+
+    Form the above table we got these RULES
+    1. If any value is false inside **&&** operator=, result will be false
+    2. If any value is true inside **||** operator, the result will be true
+    3. To get true from **&&** operator, all must be true
+    3. To get false from **||** operator, all must be false. 
+    5. Wherever it gets it's desired value, will not check next conditions
+
+    So in short circuiting process javascript only return the first truth value (if any) for OR operator and first false value for the & operator
+
+    Example 1:
+
+        console.log(0 || 7) // return 7, 0 is falsy value
+        console.log(7 || 9) // return 7, rule number 5 
+        console.log(0 || "javascrip") // return javascript
+
+    In the above code, these are correct as any value is true, it will return true, in this case the truth value
+
+    For **and** operator it will do exact oposite of **or** operator.
+
+        console.log(0 && 7) // return 0
+        console.log(7 && 9) // return 9 
+        console.log(0 && "javascrip") // return javascript
+
+    This is also correct, if any value is false, it will return the first falsy value
+
+    **[⬆ Back to Top](#table-of-contents)**
