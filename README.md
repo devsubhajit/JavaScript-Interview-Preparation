@@ -67,6 +67,9 @@
 |8 |[Does arrow function has *arguments* keyword?](#Does-arrow-function-has-arguments-keyword)|
 |9 |[What is the difference between shallow copy and deep copy for javascript objects?](#What-is-the-difference-between-shallow-copy-and-deep-copy-for-javascript-objects?)|
 |10 |[What is short circuit?](#What-is-short-circuit?)|
+|11 |[From this below example can you reurn 0 using short circuit?](#From-this-below-example-can-you-reurn-0-using-short-circuit?)|
+
+    console.log(0 || 10)
 
 ## &nbsp;
 ## &nbsp;
@@ -316,5 +319,16 @@
         console.log(0 && "javascrip") // return javascript
 
     This is also correct, if any value is false, it will return the first falsy value
+
+    **[⬆ Back to Top](#table-of-contents)**
+
+11. ### [From this below example can you reurn 0 using short circuit?](#From-this-below-example-can-you-reurn-0-using-short-circuit?)
+
+    Using **nulish** opertor we can return 0. 
+
+        console.log(0 ?? 10) // returns 0
+    
+    Because it will only check nullish values, which are *null* and *undefined*.
+    So in this case 0 becomes a truth, it returns 0 without checking next element.
 
     **[⬆ Back to Top](#table-of-contents)**
