@@ -64,7 +64,8 @@
 
 |   |    |
 | --- | ---------- |
-|8 |[Does arrow function has *arguments* keyword?](#Does-arrow-function-has-arguments-keyword)
+|8 |[Does arrow function has *arguments* keyword?](#Does-arrow-function-has-arguments-keyword)|
+|9 |[What is the difference between shallow copy and deep copy for javascript objects?](#What-is-the-difference-between-shallow-copy-and-deep-copy-for-javascript-objects?)|
 
 ## &nbsp;
 ## &nbsp;
@@ -74,7 +75,25 @@
 
 1. ### [Given var a = "String" and var b = new String("String"). What is a==b and a===b? Explain](#Given-var-a=-"String"-and-var-b-=-new-String("String").-What-is-a==b-and-a===b?-Explain)
 
-    **a==b** will check the value of the variable, where **a===b** will check the object storage reference, a is stored in the pool where b is stored in the heap
+    **a==b** will check the value of the variable, where **a===b** will check the object storage reference. When we create a primitive data, it's value get stored in the call stack at a particular memory location.
+
+    When we say 
+    
+        var a = "javascript"
+        var b = "javascript"
+    Javascript engine checks the value for both and if the value is same, it points to the same memory allocation, it doesn't create new memory allocation. 
+
+    But in case of 
+
+        var c = new String("javascript")
+    This is created from *String* object, and objects are not primitve data types, so it will be stored in Heap memory and the memory location of heap will be refered as the value of *var c* in the callstack memory allocation. 
+
+    So when we are checking
+
+        a === b // from the question
+    Its basically checking memory location, which is in this case is not same.
+
+    That's why it returns **false**
 
 
    **[⬆ Back to Top](#table-of-contents)**
@@ -209,5 +228,54 @@
 8. ### [Does arrow function has *arguments* keyword?](#Does-arrow-function-has-arguments-keyword)
 
     No, like regular functions, arrow function don't have *arguments* keyword
+
+   **[⬆ Back to Top](#table-of-contents)**
+
+9. ### [What is the difference between shallow copy and deep copy for javascript objects?](#What-is-the-difference-between-shallow-copy-and-deep-copy-for-javascript-objects?)
+
+    Shallow copy copies an object on the first level only, if the object is having nested object, shallow copy method cannot copy that object and cannot create new object reference in the heap storage, instead it points to the same child object reference. Lets understand this through an example:
+
+        const team = {
+            name:"blue",
+            size:4,
+            members:["Arun", "Rajesh", "Aparna", "Deepak"] // array object
+        }
+
+        const teamCopy = {...team}
+        teamCopy.name = "red";
+        teamCopy.members[0] = "Rajendra";
+
+        console.log(team)
+        console.log(teamCopy)
+
+    In this above example the output will be:
+
+        1. {name:"blue", size:4, members:["Rajendra", "Rajesh", "Aparna", "Deepak"]}
+        2. {name:"red", size:4, members:["Rajendra", "Rajesh", "Aparna", "Deepak"]}
+    team name is different as we have changed, that is okay. But look at the *members* object. Although we have changed only in *teamCopy*, but the effect is same in the *team* object also. 
+
+    Shallow copy couldn't create a new Object reference for nested object. Here the solution comes from the deep copy.
+
+        const team = {
+            name:"blue",
+            size:4,
+            members:["Arun", "Rajesh", "Aparna", "Deepak"] 
+        }
+
+        const teamCopy = JSON.parse(JSON.stringify(team))
+        teamCopy.name = "red";
+        teamCopy.members[0] = "Rajendra";
+
+        console.log(team)
+        console.log(teamCopy)
+    
+    And the output are:
+
+        1. {name:"blue", size:4, members:["Arun", "Rajesh", "Aparna", "Deepak"]}
+        2. {name:"red", size:4, members:["Rajendra", "Rajesh", "Aparna", "Deepak"]}
+
+    As you can see, we got our expected result here. What is happening here is, we are converting object to a string, which is a primitive data type, it allocates a new call stack memory and store the string value there, later wiht the *JSON.parse()* method we are creating an object and storing in heap memory, and the reference is getting pointed to the call stack variable value with a new memory allocaton.
+     
+
 
    **[⬆ Back to Top](#table-of-contents)**
