@@ -75,6 +75,8 @@
 | --- | ----------------------- |
 |12 |[What is higher order function in javascript?](#What-is-higher-order-function-in-javascript?)|
 |13 |[How to remove duplicate values from array?](#How-to-remove-duplicate-values-from-array?)|
+|14 |[What is partial application?](#What-is-partial-application?)|
+
 
 ## &nbsp;
 ## &nbsp;
@@ -402,5 +404,41 @@
     **Set** is a new data type, introduced in ES6. The main advantage of **set** is, it always returns an unique value of sets, it means it cannont contain duplicat value, just like other programming languages such as **Python**
 
 
+
+    **[⬆ Back to Top](#table-of-contents)**
+
+14. ### [What is partial application?](#What-is-partial-application?)    
+
+    When the parts of the arguments are specified beforehand, this common pattern is known as partial application. 
+
+    Lets understand from this below code:
+
+        const itcHotels = {
+            hotel:"ITC Royal",
+            code:"ITC",
+            bookings:[],
+            book(roomNum, name){
+                let bookingObj = {hotel:`${this.code}${roomNum}`,name};
+                this.bookings.push(bookingObj);
+            }
+        }
+        const tajHotels = {
+            hotel:"Taj Bengal",
+            code:"TAJ",
+            bookings:[]
+        }
+
+    Above on the code we have two hotel objects, but only **ITC** has the **book** method. Now we will **bind** booke method to **TAJ** hotel object.
+
+        const book = itcHotels.book; // storing the value of book method
+        const tajBook = book.bind(tajHotels);  
+    
+    Till now the code is a normal bind method. It's not yet **partial application**
+
+        const tajBook101 = book.bind(tajHotels, 101);
+    
+    In this bind method, **tajBook101**, the **roomNum** argument is specified. It is basically means that a part of the arguments of the original function **itcHotels.book** are already applied. So **tajBook101** is a *partial applicaton*
+    
+    
 
     **[⬆ Back to Top](#table-of-contents)**
