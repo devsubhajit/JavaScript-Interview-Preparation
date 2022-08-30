@@ -71,6 +71,10 @@
 
     console.log(0 || 10)
 
+|    |      |
+| --- | ----------------------- |
+|12 |[What is higher order function in javascript?](#What-is-higher-order-function-in-javascript?)|
+
 ## &nbsp;
 ## &nbsp;
 
@@ -316,7 +320,7 @@
 
         console.log(0 && 7) // return 0
         console.log(7 && 9) // return 9 
-        console.log(0 && "javascrip") // return javascript
+        console.log(0 && "javascrip") // return 0
 
     This is also correct, if any value is false, it will return the first falsy value
 
@@ -330,5 +334,40 @@
     
     Because it will only check nullish values, which are *null* and *undefined*.
     So in this case 0 becomes a truth, it returns 0 without checking next element.
+
+    **[⬆ Back to Top](#table-of-contents)**
+
+12. ### [What is higher order function in javascript?](#What-is-higher-order-function-in-javascript?)
+    A higher order function is a function which takes another function as a parameter or which has a callback function. We can pass any function as an argument, because in javascript functions are also **first class citizen**. It means it stores value like other variables. And the value type of functions in javascript is object. 
+
+    Lets take an example of HOF (Higher-Order Function)
+
+        const upperFirstWord = function (str){
+            const [first, ...others] = str.split(' ');
+            return [first.toUpperCase(), ...others].join(' ');
+        };
+    The above line of code will return any **string** with first word all in capital letters. 
+    
+    Now lets write the HOF
+
+        const transformer = function(str, fn){
+            // fn is a callback function
+            // fn has object values, as it is first class citizen
+            // fn.name will be the function name.
+            console.log(`Transforming by: ${fn.nam}`); 
+            return fn(str);
+        }
+    
+    Now lets perform the HOF
+
+        const firstUpper = transformer("Javascript is  awesome", upperFirstWord); 
+        console.log(firstUpper);
+    
+    We will get to logs in browser console
+
+        1. Transforming by upperFirstWord
+        2. JAVASCRIPT is awesome. 
+
+    **transformer** function took **upperFirstWord** function as a callback function, **trnasformer** is a Higer-Order Function.
 
     **[⬆ Back to Top](#table-of-contents)**
