@@ -74,6 +74,7 @@
 |    |      |
 | --- | ----------------------- |
 |12 |[What is higher order function in javascript?](#What-is-higher-order-function-in-javascript?)|
+|13 |[How to remove duplicate values from array?](#How-to-remove-duplicate-values-from-array?)|
 
 ## &nbsp;
 ## &nbsp;
@@ -369,5 +370,35 @@
         2. JAVASCRIPT is awesome. 
 
     **transformer** function took **upperFirstWord** function as a callback function, **trnasformer** is a Higer-Order Function.
+
+    **[⬆ Back to Top](#table-of-contents)**
+
+13. ### [How to remove duplicate values from array?](#How-to-remove-duplicate-values-from-array?)
+
+    The algorithm behind this problem is to iterate each items of the array and check if it's position or index is repeating or not. 
+
+    It means if an item is at 0 index, and the duplicate of the same item is at 8th index, on search of index of 8th positioned item will return 0. In this case the item on 8th position is duplicate item.
+
+    Lets try on code:
+
+        const arr = ["Ramesh","Pooja", "Arijit", "Ramesh", "Pooja"]
+        const newArr = [];
+        for(const name of arr){
+            if(newArr.indexOf(name) == -1){
+                newArr.push(name);
+            };
+        };
+    
+    Using **filter()** method:
+
+        const arr = ["Ramesh","Pooja", "Arijit", "Ramesh", "Pooja"];
+        const newArr = arr.filter((name, index)=>  arr.indexOf(name) === index);
+
+    Using **set()** method:
+
+        const arr = ["Ramesh","Pooja", "Arijit", "Ramesh", "Pooja"];
+        const newArr = [...new Set(arr)];
+
+
 
     **[⬆ Back to Top](#table-of-contents)**
