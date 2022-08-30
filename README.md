@@ -399,6 +399,8 @@
         const arr = ["Ramesh","Pooja", "Arijit", "Ramesh", "Pooja"];
         const newArr = [...new Set(arr)];
 
+    **Set** is a new data type, introduced in ES6. The main advantage of **set** is, it always returns an unique value of sets, it means it cannont contain duplicat value, just like other programming languages such as **Python**
+
 
 
     **[⬆ Back to Top](#table-of-contents)**
