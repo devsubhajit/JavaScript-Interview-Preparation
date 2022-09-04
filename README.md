@@ -5,7 +5,7 @@
 | No. | Questions |
 | --- | --------- |
 |   | **Javascript Fundamentals** |
-|1  | [Given var a = "String" and var b = new String("String"). What is a==b and a===b? Explain](#Given-var-a=-"String"-and-var-b-=-new-String("String").-What-is-a==b-and-a===b?-Explain) |
+|1  | [Given var a = "String" and var b = new String("String"). What is a==b and a===b? Explain](#question-one) |
 |2  | [What will be the output of following code and why?](#What-will-be-the-output-of-following-code-and-why?) |
     console.log(muliply(2,3))
     console.log(add(2,3))
@@ -76,6 +76,8 @@
 |12 |[What is higher order function in javascript?](#What-is-higher-order-function-in-javascript?)|
 |13 |[How to remove duplicate values from array?](#How-to-remove-duplicate-values-from-array?)|
 |14 |[What is partial application?](#What-is-partial-application?)|
+|15 |[What is TDZ?](#What-is-TDZ?)|
+
 
 
 ## &nbsp;
@@ -84,7 +86,7 @@
 ## Answers
 
 
-1. ### [Given var a = "String" and var b = new String("String"). What is a==b and a===b? Explain](#Given-var-a=-"String"-and-var-b-=-new-String("String").-What-is-a==b-and-a===b?-Explain)
+1. ### [Given var a = "String" and var b = new String("String"). What is a==b and a===b? Explain](#question-one)
 
     **a==b** will check the value of the variable, where **a===b** will check the object storage reference. When we create a primitive data, it's value get stored in the call stack at a particular memory location.
 
@@ -440,5 +442,26 @@
     In this bind method, **tajBook101**, the **roomNum** argument is specified. It is basically means that a part of the arguments of the original function **itcHotels.book** are already applied. So **tajBook101** is a *partial applicaton*
     
     
+
+    **[⬆ Back to Top](#table-of-contents)**
+15. ### [What is TDZ?](#What-is-TDZ?)
+    Temporal Death Zone or TDZ is a feature of javascript hoisting.
+    To understand that lets see the Javascript Hoisting Table below. 
+
+    |  | Hoisted  | Initial Value | Scope |
+    | --- | ------- | ------- | ------- |
+    | function declaration | Yes | actual function | block|
+    | var variables | Yes | undefined | function|
+    | let and const variable | No | uninitialized, TDZ | block|
+    | funciton expressions and arrows |  | Depends on variable type | |
+
+    From the above table, if we declare a variable either with **let** or **const** and try to access it before it will throw error as it was not hoisted. So this will create a temoral death zone.
+
+    Lets understand with code:
+
+        console.log(x)
+        let x = "javasript"
+    
+    **x** is being called before it's initialization, this code is an example of **TDZ**
 
     **[⬆ Back to Top](#table-of-contents)**
