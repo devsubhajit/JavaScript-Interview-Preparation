@@ -88,6 +88,7 @@
 
 1. ### [Given var a = "String" and var b = new String("String"). What is a==b and a===b? Explain](#question-one)
 
+
     **a==b** will check the value of the variable, where **a===b** will check the object storage reference. When we create a primitive data, it's value get stored in the call stack at a particular memory location.
 
     When we say 
@@ -445,6 +446,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 15. ### [What is TDZ?](#What-is-TDZ?)
+
     Temporal Death Zone or TDZ is a feature of javascript hoisting.
     To understand that lets see the Javascript Hoisting Table below. 
 
