@@ -77,6 +77,13 @@
 |13 |[How to remove duplicate values from array?](#How-to-remove-duplicate-values-from-array?)|
 |14 |[What is partial application?](#What-is-partial-application?)|
 |15 |[What is TDZ?](#What-is-TDZ?)|
+|16 |[What do you mean by "Javascript has dynamic typing"?](#What-do-you-mean-by-Javascript-has-dynamic-typing?)|
+|17 |[How to check data type?](#How-to-check-data-type?)|
+|18 |[How to get the last word from a string?](#How-to-get-the-last-word-from-a-string?)|
+|19 |[What is boxing in javascript?](#What-is-boxinh-in-javascript)|
+|20 |[Add a title to the name?](#Add-a-title-to-the-name)|
+|21 |[Write your own string method for removing first letter?](#Write-your-own-string-method-for-removing-first-letter)|
+|22 |[Write a funciton to mask first 12 digit of card number?](#card-mask-funciton)|
 
 
 
@@ -465,5 +472,86 @@
         let x = "javasript"
     
     **x** is being called before it's initialization, this code is an example of **TDZ**
+
+    **[⬆ Back to Top](#table-of-contents)**
+
+16. ### [What do you mean by "Javascript has dynamic typing"?](#What-do-you-mean-by-Javascript-has-dynamic-typing?)
+
+    It means that whenever we are decalring a variable, we don't need to declare it's data type. Like some other languages (Java) we have to provide it's data types, but, not in Javascript
+
+    **[⬆ Back to Top](#table-of-contents)**
+
+17. ### [How to check data type?](#How-to-check-data-type?)
+
+    Using typeof, we can check the data type of a particular variable.
+
+        var a = true;
+        console.log(typeof a);  // returns boolean 
+
+    **[⬆ Back to Top](#table-of-contents)**
+
+18. ### [How to get the last word from a string?](#How-to-get-the-last-word-from-a-string?)
+
+    There are many way. I will show two ways.
+
+    * Solution 1
+            
+            const sentence = "I love Javascript";
+            const lastWord = sentece.slice(sentence.lastIndexOf(' ') + 1);
+            // lastWord will be "Javascript"
+    
+    * Solution 2
+
+            const sentence = "I love Javascript";
+            const sentenceArr = sentece.split(' ');
+            const lastWord = sentenceArr[sentenceArr.length - 1];
+    
+
+    **[⬆ Back to Top](#table-of-contents)**
+
+19. ### [What is boxing in javascript?](#What-is-boxinh-in-javascript)
+
+    When we create a string in javascript, it autmatically behind the scene convert that string primitive to a string object with the same content. That's how we got all methods related to String class / object. This process is called **Boxing**
+
+    **[⬆ Back to Top](#table-of-contents)**
+
+20. ### [Add a title to the name?](#Add-a-title-to-the-name)
+
+        const name = "Subhajit Das";
+        const [fistName, lastName] = name.split(' ');
+        const fullName = ['Mr.', firstName, lastName].join(' ');
+
+        console.log(fullName);  //Mr. Subhajit Das 
+
+    **[⬆ Back to Top](#table-of-contents)**
+
+21. ### [Write your own string method for removing first letter?](#Write-your-own-string-method-for-removing-first-letter)
+
+        String.prototype.removeFirst = function(callback){
+            let str = '';
+            for(let i=0; i<this.length; i++){
+                str=str + callback(this[i]);
+            }
+            return str.slice(1);
+        }
+
+        const word = "apple";
+        console.log(word.removeFirst()); // "pple"
+        console.log(word.removeFirst(e=> e.toUpperCase())); // "PPLE"
+
+    **[⬆ Back to Top](#table-of-contents)**
+
+22. ### [Write a funciton to mask first 12 digit of card number?](#card-mask-funciton)
+
+            const maskCard = function (card_number){
+                let lastFour = card_number.slice(-4);
+                let maskedNum = lastFour.padStart(12,'X');
+                return maskedNum;
+            }
+            
+            console.log(maskcreditCard("4323876546365172"));
+            // XXXXXXXXXXXX5172    
+
+
 
     **[⬆ Back to Top](#table-of-contents)**
