@@ -90,6 +90,9 @@
 |26 |[Inheritence between child and parent class](#Inheritence-between-child-and-parent-class)|
 |27 |[Why we need super in child class?](#Why-we-need-super-in-child-class)|
 |28 |[If the a method in parent and child class name are same, which method will have the effect?](#Method-overridding)|
+|29 |[What is call and apply method?](#What-si-call-and-apply-method)|
+|30 |[How is bind method different from call and apply?](#How-is-bind-method-different-from-call-and-apply)|
+|31 |[What is closure function?](#What-is-closure-function)|
 
 
 
@@ -663,6 +666,93 @@
 28. ### [If the a method in parent and child class name are same, which method will have the effect?](#Method-overridding)
 
     The method in child class will have the effect, as it comes first in the prototype chaining.
+
+**[⬆ Back to Top](#table-of-contents)**
+
+29. ### [What is call and apply method?](#What-si-call-and-apply-method)
+
+    Using **call** and **apply** method we can transfer a mentho from one object to another object. 
+
+        const airIndia = {
+            airline:'AirIndia',
+            iataCode:'AI',
+            bookings:[],
+            book(fltNum, name){
+                let bookingObj = {flight:`${this.iataCode}${fltNum}`, name};
+                bookings.push(bookingObj);
+            };
+        };
+        const vistara = {
+            airline:'Vistara',
+            iataCode:'VI',
+            bookings:[]
+        };
+    From the above code we want to use the ***book*** method of **airIndia** objectto **vistara** object. For that we will apply  javascript **call** method.
+
+        const book = airIndia.book; // storing the function value, 
+        book.call(vistara, 153, 'Mohit Jain')
+    In this call method we are passing the object as **this**, and then the arguments of the function. 
+
+        console.log(vistara.bookings);
+        // [{flight:'VI153', name:'Mohit Jain'}]
+    
+    Call and Apply are same method, but instead of passing arguments one by one, in apply we pass arguments as an array
+
+        const args = [345, 'Puskar Raj'];
+        book.apply(vistara, args);
+    In mordern javascript we have **spread** operator, for that reason apply method is being used very less.
+
+        book.call(vistara, ...args);
+    This works same as apply method.
+
+**[⬆ Back to Top](#table-of-contents)**
+
+30. ### [How is bind method different from call and apply?](#How-is-bind-method-different-from-call-and-apply)
+
+    In bind method we are not calling the method but we actually binding the method with the currenct object.
+
+        const spicejet = {
+            airline: "spicejet",
+            iataCode: "SP",
+            bookings: []
+        }
+
+        const bookSP = book.bind(spicejet);
+    Now we can use this **bookSP** for booking under **spicejet** object. We can fixed some arguments also
+
+        const bookSP553 = book.bind(spicejet, 553); // here it is a partial application
+    That was object bind, now lets see functional bind.
+
+        const visitPlaces = (country, location) => `Visited ${location} in ${country}`;
+        const visitIndia = visitPlaces.bind(null, 'India'); 
+    
+    as the first argument should be bind, but we don't have ***this*** here, that's why we are sending **null**, although we can send anything
+
+        console.log(visitIndia('Bangalore'));
+        // "Visited Bangalore in India";
+
+**[⬆ Back to Top](#table-of-contents)**
+
+31. ### [What is closure function?](#What-is-closure-function)
+
+    Closure is a function which returns another function. When we execute a closure on the call stack after returning it's inside function, the parent function got removed, however the child function still have the access of parent function's scope. Its because, function always keep it's birh scope along with it. Let's practice the same **visitPlaces** function with closure.
+
+        const visitPlacess = (country)=>{
+            let places=[];
+            return (location)=>{
+                places.push(location);
+                console.log(places);
+                return `Visited ${location} in ${country}`;
+            }
+        }
+
+        visitPlaces('India')('Bangalore') // Or
+        const vp = visitPlace("India");
+        vp("Mumbai");
+        vp("Madurai");
+        vp("Mysore");
+
+In console we get to see updated **places array**, this is the real magic of closure. **visitPlaces('India')('Bangalore')** will create new array of places every time, but using **vp(<place>)** will update the existing array
 
 **[⬆ Back to Top](#table-of-contents)**
     
