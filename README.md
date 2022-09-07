@@ -84,6 +84,12 @@
 |20 |[Add a title to the name?](#Add-a-title-to-the-name)|
 |21 |[Write your own string method for removing first letter?](#Write-your-own-string-method-for-removing-first-letter)|
 |22 |[Write a funciton to mask first 12 digit of card number?](#card-mask-funciton)|
+|23 |[Create a function constructor](#create-a-function-constructor)|
+|24 |[How to chain prototype in constructor function](#How-to-chain-prototype-in-constructor-function)|
+|25 |[Create a class constructor](#Create-a-class-constructor)|
+|26 |[Inheritence between child and parent class](#Inheritence-between-child-and-parent-class)|
+|27 |[Why we need super in child class?](#Why-we-need-super-in-child-class)|
+|28 |[If the a method in parent and child class name are same, which method will have the effect?](#Method-overridding)|
 
 
 
@@ -555,3 +561,108 @@
 
 
     **[⬆ Back to Top](#table-of-contents)**
+
+23. ### [Create a function constructor](#create-a-function-constructor)
+
+        const Person = function(name, dob){
+            this.name = name;
+            this.dob = dob;
+        }
+
+        Person.protoype.calcAge = function(callback){
+            let d = new Date();
+            let year = d.getFullYear();
+            return year - this.dob;
+        }
+
+
+
+    **[⬆ Back to Top](#table-of-contents)**
+
+24.  ### [How to chain prototype in constructor function?](#How-to-chain-prototype-in-constructor-function)
+
+            const Person = function(name, dob){
+                this.name = name;
+                this.dob = dob;
+            }
+
+            Person.protoype.calcAge = function(callback){
+                let d = new Date();
+                let year = d.getFullYear();
+                return year - this.dob;
+            }
+
+            const Student = function(name, dob, course){
+                Person.call(this, name, dob);
+                this.course = course;
+            }
+
+            // Linking prototype 
+            Student.prototype = Object.create(Person.prototype);
+            const student1 = new Student('Dev Chandra', 1992, 'JavaScript');
+
+            console.log(student1.calcAge()); // will return age from the Parent / Person constructor
+
+
+
+**[⬆ Back to Top](#table-of-contents)**
+
+
+25.   ### [Create a class constructor](#Create-a-class-constructor)
+
+            class Person {
+                constructor(name, dob){
+                    this.name = name;
+                    this.dob = dob;
+                }
+
+                calcAge(){
+                    let d = new Date();
+                    let year = d.getFullYear();
+                    return year - this.dob;
+                }
+            }
+
+
+
+**[⬆ Back to Top](#table-of-contents)**
+
+
+26. ### [Inheritence between child and parent class](#Inheritence-between-child-and-parent-class)
+
+        class Student extends Person {
+
+        }
+
+        const student1 = new Student('Subhajit', 1995);
+
+
+**[⬆ Back to Top](#table-of-contents)**
+
+
+27. ### [Why we need super in child class?](#Why-we-need-super-in-child-class)|
+
+    In our child class if we need to add extra paramenter than the parent class, then to access parent class constructor we need **super()** method.
+
+        class Student extends Person {
+            constructor(name, dob, course){
+                // Super should be first implemented
+                super(name, dob);
+                this.course = course;
+            }
+
+            greet(){
+                console.log(`Hello ${this.name}`);
+            }
+        }
+
+        const student1 = new Student('Subha Chandra', 1996, 'JavaScript');
+
+**[⬆ Back to Top](#table-of-contents)**
+
+28. ### [If the a method in parent and child class name are same, which method will have the effect?](#Method-overridding)
+
+    The method in child class will have the effect, as it comes first in the prototype chaining.
+
+**[⬆ Back to Top](#table-of-contents)**
+    
