@@ -93,6 +93,7 @@
 |29 |[What is call and apply method?](#What-si-call-and-apply-method)|
 |30 |[How is bind method different from call and apply?](#How-is-bind-method-different-from-call-and-apply)|
 |31 |[What is closure function?](#What-is-closure-function)|
+|32 |[What is DOM?](#What-is-DOM)|
 
 
 
@@ -753,6 +754,16 @@
         vp("Mysore");
 
 In console we get to see updated **places array**, this is the real magic of closure. **visitPlaces('India')('Bangalore')** will create new array of places every time, but using **vp(<place>)** will update the existing array
+
+**[⬆ Back to Top](#table-of-contents)**
+
+32. ### [What is DOM?](#What-is-DOM)
+
+    **DOM** is the interface between **JavaScript** code and the **Browswer**. It's an API (Application Programming Interface).
+
+    * DOM allows us to make javascript interact with browswer
+    * DOM tree is generated from an HTML document, which we can then interact with.
+    * DOM is very complex API that contains lots of methods and proerties to interact with the DOM tree
 
 **[⬆ Back to Top](#table-of-contents)**
     
