@@ -94,7 +94,100 @@
 |30 |[How is bind method different from call and apply?](#How-is-bind-method-different-from-call-and-apply)|
 |31 |[What is closure function?](#What-is-closure-function)|
 |32 |[What is DOM?](#What-is-DOM)|
+|33 |[What is the output of this below code?](#use-strict)| 
+        "use strict";
+        function mall(){
+            var brands = 200;
+            console.log(this);
+        }
+        const  theMall = ()=>{
+            var brands = 200;
+            console.log("arrow ",this);
+        }
+        mall();
+        theMall();
 
+|34 | Outputs      |
+| --- | ----------------------- |
+|35 |[Define the function for this below code](#output1)|
+
+        console.log(sum(2)(3)(4))
+|  |      |
+| --- | ----------------------- |
+|36 |[Output2](#output2)|
+
+        const myObj1 = {
+            id:"123",
+            name:"test name"
+        }
+        
+        const myObj2 = {
+            id:"123",
+            name:"test name"
+        }
+        console.log(myObj1 === myObj2);
+|  |      |
+| --- | ----------------------- |
+|37 |[Output3](#output3)|
+
+        let a = 3<4<5;
+        let b =  5>4>3;
+        console.log(a, b);
+
+|  |      |
+| --- | ----------------------- |
+|38 |[Output4](#output4)|
+
+        function f(x){
+            x++
+            (x == x-3) && ++x
+            return x--
+        }
+        f(2)
+
+|  |      |
+| --- | ----------------------- |
+|39 |[Output5](#output5)|
+
+        const a = "javascript";
+        const b = "javascript";
+        const c = new String("javascript");
+
+        console.log(a===b)
+        console.log(a===c)
+
+|  |      |
+| --- | ----------------------- |
+|40 |[Output6](#output6)|
+        console.log(muliply(2,3))
+        console.log(add(2,3))
+
+        function muliply(a, b){
+            return a*b;
+        }
+        var add = (a, b)=> a+b;
+
+|  |      |
+| --- | ----------------------- |
+|41 |[Output7](#output7)|
+        const promise1 = Promise.resolve('First')
+        const promise2 = Promise.resolve('Second')
+        const promise3 = Promise.reject('Third')
+        const promise4 = Promise.resolve('Fourth')
+
+        const runPromises = async () => {
+            const res1 = await Promise.all([promise1, promise2])
+            const res2  = await Promise.all([promise3, promise4])
+            return [res1, res2]
+        }
+
+        runPromises()
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+
+|  |      |
+| --- | ----------------------- |
+|42 |[Can you write your own map function](#own-map)|
 
 
 ## &nbsp;
@@ -766,4 +859,151 @@ In console we get to see updated **places array**, this is the real magic of clo
     * DOM is very complex API that contains lots of methods and proerties to interact with the DOM tree
 
 **[⬆ Back to Top](#table-of-contents)**
+
+
+33. ### [What is the output of this below code?](#use-strict)
+
+        "use strict";
+        function mall(){
+            var brands = 200;
+            console.log(this);
+        }
+        const  theMall = ()=>{
+            var brands = 200;
+            console.log("arrow ",this);
+        }
+        mall();
+        theMall();
+    **mall()** will return *undefined* as **"use strict"**  and not refering to window object.
+    **theMall()** will ruturn window object as it is under arrow function and arrow function doesn't have it's this
+
+**[⬆ Back to Top](#table-of-contents)**
+
+34. ### [Define the function for this below code?](#output1)
+
+        console.log(sum(2)(3)(4))
+    Since it is a closer so the definition for this function will be like this. 
+
+        const sum = a => b => c=> console.log(a+b+c);
+
+**[⬆ Back to Top](#table-of-contents)**
+
+35. ### [Output2](#output2)
+
+        const myObj1 = {
+            id:"123",
+            name:"test name"
+        }
+        
+        const myObj2 = {
+            id:"123",
+            name:"test name"
+        }
+        console.log(myObj1 === myObj2);
+
+    This will return false, as these are object created in heap memory with different memory allocation. 
+    Althogh these objects having same value but will point to different memory allocation
+
+**[⬆ Back to Top](#table-of-contents)**
+
+36. ### [Output3](#output3)
+
+        let a = 3<4<5;
+        let b =  5>4>3;
+        console.log(a, b);
+
+    **a** will return **true** as **3<4  = true** in binary it will be **1** and **1 < 5** is **true**
+    **b** will return **false** as **5>4 = true** in binary it will be **1** and **1 > 3** is **false**
+
+**[⬆ Back to Top](#table-of-contents)**
+
+37. ### [Output4](#output4)
+
+        function f(x){
+            x++
+            (x == x-3) && ++x
+            return x--
+        }
+        f(2)
+    Output will be 3, it will increase as x++, it will be 3, so it will not move to the next condition, and in return it is as suffix 
+    so return will be before the increment
+
+**[⬆ Back to Top](#table-of-contents)**
+
+38. ### [Output5](#output4)
+
+        const a = "javascript";
+        const b = "javascript";
+        const c = new String("javascript");
+
+        console.log(a===b)
+        console.log(a===c)
+
+    **a===b** will be true as both are pointing to same memory allocation in stack, 
+    **a===c** will be false as **const c** is crearted from String object method, so it will create a memory allocation in heap memory which is not same as **const a**
+
+**[⬆ Back to Top](#table-of-contents)**
+
+39. ### [Output6](#output6)
+
+        console.log(muliply(2,3))
+        console.log(add(2,3))
+
+        function muliply(a, b){
+            return a*b;
+        }
+        var add = (a, b)=> a+b;
+    **muliply(2,3)** will return 6 as function will be hoiseted but for the arrow function it will not be hoisted so it will return TypeError, explaining *add is not a function*
+
+**[⬆ Back to Top](#table-of-contents)**
+
+40. ### [Output7](#output7)
+
+        const promise1 = Promise.resolve('First')
+        const promise2 = Promise.resolve('Second')
+        const promise3 = Promise.reject('Third')
+        const promise4 = Promise.resolve('Fourth')
+
+        const runPromises = async () => {
+            const res1 = await Promise.all([promise1, promise2])
+            const res2  = await Promise.all([promise3, promise4])
+            return [res1, res2]
+        }
+
+        runPromises()
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+
+    It will return **Third** as this promise has reject and will log the runPromises catch block
+
+**[⬆ Back to Top](#table-of-contents)**
+
+41. ### [Can you write your own map function?](#own-map)
+    
+    yes can be written using prototype chaining of Object.
+
+            Array.prototype.myMap = function(callback){
+                let newArray = [];
+                let x = this.length;
+
+                for(let i=0; i<x; i++){
+                    let counter = callback(this[i], i, this);
+                    newArray.push(counter);
+                }
+
+                return newArray;
+            }
+    Use Case
+
+        const arr = [{name:'snaskar', value:100}, {name:'parbati', value:200}];
+        const arr2 = arr.myMap(e=> e.value*2);
+        console.log(arr2);
+    
+    Output
+
+        [200, 400]
+    
+
+**[⬆ Back to Top](#table-of-contents)**
+
     
